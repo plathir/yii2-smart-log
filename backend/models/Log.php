@@ -1,9 +1,6 @@
 <?php
 
-namespace plathir\settings\models;
-
-use Yii;
-use yii\behaviors\TimestampBehavior;
+namespace plathir\log\backend\models;
 
 /**
  * This is the model class for table "log".
