@@ -1,6 +1,7 @@
 <?php
 
 use yii\widgets\DetailView;
+use yii\helpers\Html;
 
 $this->title = Yii::t('log', 'Log Entry : ').$model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('log', 'Log Index'), 'url' => ['index']];
@@ -17,6 +18,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div><!-- /.box-header -->
     <div class="box-body">
+            <p>
+                <?=
+                Html::a('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger btn-flat',
+                    'data' => [
+                        'confirm' => 'Are you sure you want to delete this item?',
+                        'method' => 'post',
+                    ],
+                ])
+                ?>
+            </p>        
         <?php
         echo DetailView::widget([
             'model' => $model,
