@@ -1,5 +1,4 @@
 <?php
-
 namespace plathir\log\backend\controllers;
 
 use yii\web\Controller;

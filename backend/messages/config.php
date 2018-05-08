@@ -1,5 +1,4 @@
 <?php
-
 return [
     'sourcePath' => __DIR__ . DIRECTORY_SEPARATOR . '..',
     'languages' => ['en'],

@@ -1,9 +1,9 @@
 <?php
+
 /**
  * @var \yii\web\View $this
  * @var \zhuravljov\yii\logreader\Log $log
  */
-
 use yii\helpers\Html;
 
 /** @var \zhuravljov\yii\logreader\Module $module */

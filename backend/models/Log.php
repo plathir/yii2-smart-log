@@ -1,5 +1,4 @@
 <?php
-
 namespace plathir\log\backend\models;
 
 /**

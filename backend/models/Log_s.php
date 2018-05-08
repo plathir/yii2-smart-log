@@ -1,11 +1,9 @@
 <?php
-
 namespace plathir\log\backend\models;
 
 use yii\data\ActiveDataProvider;
 use plathir\log\backend\models\Log;
 use plathir\log\backend\models\Log_s;
-
 
 class Log_s extends Log {
 
@@ -14,9 +12,8 @@ class Log_s extends Log {
      */
     public function rules() {
         return [
-            [['id', 'level' ], 'integer'],
+            [['id', 'level'], 'integer'],
             [['category', 'log_time', 'prefix', 'message'], 'string'],
-
         ];
     }
 
@@ -44,8 +41,8 @@ class Log_s extends Log {
         ]);
 
         $query->andFilterWhere(['like', 'category', $this->category])
-              ->andFilterWhere(['like', 'prefix', $this->prefix])
-              ->andFilterWhere(['like', 'message', $this->message]);
+                ->andFilterWhere(['like', 'prefix', $this->prefix])
+                ->andFilterWhere(['like', 'message', $this->message]);
 
         return $dataProvider;
     }
