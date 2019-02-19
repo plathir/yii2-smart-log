@@ -21,7 +21,7 @@ class m190219_094500_LogMigration extends Migration {
         $this->dropIfExist('log');
 
         $this->createTable('log', [
-            'id' => $this->integer(20)->bigPrimaryKey(),
+            'id' => $this->bigPrimaryKey(),
             'level' => $this->integer(11),
             'category' => $this->string(255),
             'log_time' => $this->double(),
