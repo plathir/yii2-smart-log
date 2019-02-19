@@ -27,7 +27,7 @@ class m190219_094500_LogMigration extends Migration {
             'log_time' => $this->double(),
             'prefix' => $this->string(),
             'message' => $this->string(),
-        ]);
+        ], 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB');
 
     }
 
