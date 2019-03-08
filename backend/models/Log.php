@@ -12,7 +12,7 @@ class Log extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'log';
+        return '{{%log}}';
     }
 
 }

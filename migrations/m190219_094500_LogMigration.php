@@ -14,13 +14,13 @@ class m190219_094500_LogMigration extends Migration {
 
     public function down() {
 
-        $this->dropIfExist('log');
+        $this->dropIfExist('{{%log}}');
     }
 
     public function CreateLogTable() {
-        $this->dropIfExist('log');
+        $this->dropIfExist('{{%log}}');
 
-        $this->createTable('log', [
+        $this->createTable('{{%log}}', [
             'id' => $this->bigPrimaryKey(),
             'level' => $this->integer(11),
             'category' => $this->string(255),
