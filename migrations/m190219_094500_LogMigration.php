@@ -14,11 +14,11 @@ class m190219_094500_LogMigration extends Migration {
 
     public function down() {
 
-        $this->dropIfExist('{{%log}}');
+        $this->dropIfExist('log');
     }
 
     public function CreateLogTable() {
-        $this->dropIfExist('{{%log}}');
+        $this->dropIfExist('log');
 
         $this->createTable('{{%log}}', [
             'id' => $this->bigPrimaryKey(),
@@ -32,9 +32,10 @@ class m190219_094500_LogMigration extends Migration {
     }
 
     public function dropIfExist($tableName) {
-        if (in_array($tableName, $this->getDb()->schema->tableNames)) {
-            $this->dropTable($tableName);
+        if (in_array($this->db->tablePrefix .$tableName, $this->getDb()->schema->tableNames)) {
+            $this->dropTable($this->db->tablePrefix .$tableName);
         }
     }
+
 
 }
