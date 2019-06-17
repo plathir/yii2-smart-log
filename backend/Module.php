@@ -2,6 +2,7 @@
 namespace plathir\log\backend;
 
 use Yii;
+use \common\helpers\ThemesHelper;
 
 class Module extends \yii\base\Module {
 
@@ -14,7 +15,10 @@ class Module extends \yii\base\Module {
 
         parent::init();
 
-        $path = Yii::getAlias('@vendor') . '/plathir/yii2-smart-log/backend/themes/' . $this->Theme . '/views';
+        $helper = new ThemesHelper();
+        $path = $helper->ModuleThemePath('log', 'backend', dirname(__FILE__) . "/themes/$this->Theme");
+        $path = $path . '/views';
+        
         $this->setViewPath($path);
         $this->registerTranslations();
     }
