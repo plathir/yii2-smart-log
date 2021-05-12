@@ -1,4 +1,5 @@
 <?php
+
 namespace plathir\log\backend\controllers;
 
 use yii\web\Controller;
@@ -18,27 +19,39 @@ class LogController extends Controller {
     }
 
     public function actionIndex() {
-        $searchModel = new Log_s();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (\yii::$app->user->can('SystemLog')) {
+            $searchModel = new Log_s();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
-        ]);
+            return $this->render('index', [
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+            ]);
+        } else {
+            throw new \yii\web\NotAcceptableHttpException(Yii::t('log', 'No Permission to View Logs '));
+        }
     }
 
     public function actionView($id) {
-        $model = $this->findModel($id);
-        return $this->render('view', [
-                    'model' => $model,
-        ]);
+        if (\yii::$app->user->can('SystemLog')) {
+            $model = $this->findModel($id);
+            return $this->render('view', [
+                        'model' => $model,
+            ]);
+        } else {
+            throw new \yii\web\NotAcceptableHttpException(Yii::t('log', 'No Permission to View Log '));
+        }
     }
 
     public function actionDelete($id) {
-        if ($this->findModel($id)->delete()) {
-            Yii::$app->getSession()->setFlash('success', Yii::t('log', 'Log entry : {id} deleted', ['id' => $id]));
+        if (\yii::$app->user->can('SystemLog')) {
+            if ($this->findModel($id)->delete()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('log', 'Log entry : {id} deleted', ['id' => $id]));
+            }
+            return $this->redirect(['index']);
+        } else {
+            throw new \yii\web\NotAcceptableHttpException(Yii::t('log', 'No Permission to Delete Log '));
         }
-        return $this->redirect(['index']);
     }
 
     protected function findModel($id) {
